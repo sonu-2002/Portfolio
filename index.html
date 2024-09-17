@@ -1,58 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Global Styles */
         body {
-            margin-right: 6%;
-            margin-left: 6%;
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #0056b3;
+        }
+
+        /* About Me Section */
+        #about {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            color: #fff;
+        }
+
+        #about img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        #about h2 {
+            font-size: 2rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        #about h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin: 10px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        #about .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #about .skill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            background-color: #fff;
+            color: #007bff;
+            padding: 5px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #about .skill i {
+            font-size: 2rem;
+        }
+
+        #about .MainDomain {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1.2s forwards;
+        }
+
+        #projects h2 {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .project i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-right: 15px;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1.4s forwards;
+            text-align: center;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        #contact a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #contact a:hover {
+            color: #0056b3;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #007bff;
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            #about img {
+                width: 120px;
+                height: 120px;
+            }
+
+            #about h1 {
+                font-size: 2rem;
+            }
+
+            #about h2 {
+                font-size: 1.5rem;
+            }
+
+            #about p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
-<span><span face="Lato, sans-serif"><span><span><div>
-          <div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQMksrZcF1apAMgSL2W6LlFwNd1DyxQb-b6sdZ3WlDwDPUyTrROLAoUyVlhDcnT5lHqOPUVPwg1Lv2fwgrRAyUT1xHPFV__6uqpJAbTX8D_1Y_-gibSF7AHo0zq2ppLj4kgQ-ALBObkHY-qADNDuYEe7NS_M274KVhLIMmDxmqsxpRVKr7TBjMf5B3-Q/s720/FB_IMG_1666440794439.jpg" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" data-original-height="720" data-original-width="720" height="197" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQMksrZcF1apAMgSL2W6LlFwNd1DyxQb-b6sdZ3WlDwDPUyTrROLAoUyVlhDcnT5lHqOPUVPwg1Lv2fwgrRAyUT1xHPFV__6uqpJAbTX8D_1Y_-gibSF7AHo0zq2ppLj4kgQ-ALBObkHY-qADNDuYEe7NS_M274KVhLIMmDxmqsxpRVKr7TBjMf5B3-Q/w197-h197/FB_IMG_1666440794439.jpg" width="197" /></a></div><br /><span style="color: #444444; font-family: Lato; font-size: medium;"><br /></span>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGcPH-fDhcgdQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1666441706512?e=1732147200&v=beta&t=Sjs4PJyxiDMh64zv1hGQGXeruDMc9muICwzg6MeW2Fc"
+            alt="My Profile Picture">
+        <h2>soNu kumar shah</h2>
+        <p>Hi, I am a passionate game developer with experience in Unity, C#. I love creating immersive gaming
+            experiences and solving complex challenges.</p>
+        <p class="MainDomain">Game Programmer<\>
+        </p>
+        <div class="skills">
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>C#</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>C++</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>Unity3D</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>PUN 2</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>Blender</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>Photoshop</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>Github</span>
+            </div>
         </div>
-        <div>
-          <span style="color: #444444; font-family: Nunito Sans; font-size: medium;">HELLO</span>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="project">
+                <i class="fas fa-car"></i>
+                <div>
+                    <h3>Project 1: Ludo</h3>
+                    <p>Ludo with Online Multiplayer using PUN2.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-gamepad"></i>
+                <div>
+                    <h3>Project 2: Helix Stack Jump</h3>
+                    <p>A Helix Stack Jump game with unique mechanics.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <h3>Project 3: Block Puzzle</h3>
+                    <p>An AI-driven puzzle game with dynamic difficulty adjustment.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-globe"></i>
+                <div>
+                    <h3>Project 4: Bike surf</h3>
+                    <p>An augmented reality app for exploring virtual environments.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-code"></i>
+                <div>
+                    <h3>Project 5: snake.io</h3>
+                    <p>A platform for interactive coding lessons and challenges.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-cogs"></i>
+                <div>
+                    <h3>Project 6: Hill Climb</h3>
+                    <p>A simulator for programming and controlling virtual robots.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-music"></i>
+                <div>
+                    <h3>Project 7: Race 3d</h3>
+                    <p>A rhythm game where players tap along with the beat.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-puzzle-piece"></i>
+                <div>
+                    <h3>Project 8: Knife Hit</h3>
+                    <p>A sandbox game where players can create and share their own levels.</p>
+                </div>
+            </div>
+            <div class="project">
+                <i class="fas fa-puzzle-piece"></i>
+                <div>
+                    <h3>Project 9: Jumping master</h3>
+                    <p>A collection of brain-teasing puzzles with various difficulty levels.</p>
+                </div>
+            </div>
         </div>
-        <div>
-          <span style="color: #444444; font-family: Nunito Sans; font-size: medium;">MY NAME IS</span>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:sonu.in2412@gmail.com">sonu.in2412@gmail.com</a></p>
+        <div class="social-icons">
+            <a href="https://github.com/sonu-2002" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sonu-kumar-738216217/" target="_blank" title="LinkedIn"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/sonu.2412/" target="_blank" title="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61559611096383&mibextid=ZbWKwL" target="_blank"
+                title="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
-        <div>
-          <span style="color: #444444; font-family: Nunito Sans; font-size: medium;"><b>SONU</b></span></div><div><span style="color: #444444; font-family: Lato; font-size: medium;"><br /></span>
-        </div>
-        <div style="font-size: 18.9px;">
-          <span style="background-color: #cfe2f3;"><span style="font-family: courier;">
-            I'm a student of class 12th who is passionate about game developing.
-            I love creating something new and creative.
-          </span>
-        </span></div>
-        <div style="font-size: 18.9px;">
-          <span style="background-color: #cfe2f3;"><span style="font-family: courier;"><br /></span>
-        </span></div>
-        <div style="font-size: 18.9px;">
-          <span style="background-color: #cfe2f3;"><span style="font-family: courier;">
-            About 1 and half years of experience in Game development.
-          </span>
-        </span></div>
-        <div style="font-size: 18.9px;">
-          <span style="background-color: #cfe2f3;"><span style="font-family: courier;">And I love coding:</span>
-        </span></div>
-        <div style="font-size: 18.9px;"><br /></div>
-        <div style="font-size: 18.9px;">______________</div>
-        <div style="font-size: 18.9px;">
-          <span style="font-family: courier;"><span style="color: #3d85c6;">Add:</span> Forbesganj - Araria -
-            Bihar - INDIA</span>
-        </div>
-        <div style="font-size: 18.9px;">
-          <span style="font-family: courier;"><span style="color: #3d85c6;">Birthday:</span> 2nd Jan 2002</span>
-        </div>
-        <div style="font-size: 18.9px;">
-          <span style="font-family: courier;"><span style="color: #3d85c6;">Age:</span> 19</span></div>
-        <div style="font-size: 18.9px;">
-          <span style="font-family: courier;"><span style="color: #3d85c6;">Phone:</span> +91 7564949436</span>
-        </div>
-        <div style="font-size: 18.9px;">
-          <span style="font-family: courier;"><span style="color: #3d85c6;">Email:&nbsp;</span>sonu.dvlpr@gmail.com</span>
-        </div><div style="font-size: 18.9px;"><br /></div><div style="font-size: 18.9px; text-align: justify;"><br /></div>
-        <div style="font-size: 18.9px; text-align: left;"><span style="font-family: courier;">&nbsp; &nbsp; &nbsp;&nbsp;</span><b style="font-size: 18.9px; text-align: justify;"><span style="background-color: #444444; color: #eeeeee; font-family: helvetica;">&nbsp;Skills And Tools&nbsp;</span></b></div><div style="font-size: 18.9px; text-align: left;"><b style="font-size: 18.9px; text-align: justify;"><span style="background-color: #444444; color: #eeeeee; font-family: trebuchet;"><br /></span></b></div><div style="text-align: left;"><b><span style="font-family: helvetica;">Unity Engine&nbsp; &nbsp; &nbsp;</span></b><b style="background-color: #d0e0e3;">&nbsp;<span style="font-family: helvetica;">67%&nbsp;</span></b><b><span style="font-family: helvetica;">&nbsp; &nbsp; -&nbsp; &nbsp; 1.5+ years</span></b></div><div style="text-align: left;"><b><span style="font-family: helvetica;">C#&nbsp; &nbsp; &nbsp;</span></b><b style="background-color: #d0e0e3;">&nbsp;<span style="font-family: helvetica;">71%&nbsp;</span></b><b><span style="font-family: helvetica;">&nbsp; &nbsp; -&nbsp; &nbsp;&nbsp;</span></b><b><span style="font-family: helvetica;">1.5</span></b><b><span style="font-family: helvetica;">+ years</span></b></div><div style="text-align: left;"><b><span style="font-family: helvetica;">C++&nbsp; &nbsp; &nbsp;</span></b><b style="background-color: #d0e0e3;">&nbsp;<span style="font-family: helvetica;">74%&nbsp;</span></b><b><span style="font-family: helvetica;">&nbsp; &nbsp; -&nbsp; &nbsp; 2+ years</span></b></div><div style="text-align: left;"><b><span style="font-family: helvetica;">Photoshop&nbsp; &nbsp; &nbsp;</span></b><b style="background-color: #d0e0e3;">&nbsp;<span style="font-family: helvetica;">18%&nbsp;</span></b><b><span style="font-family: helvetica;">&nbsp; &nbsp; -&nbsp; &nbsp;&nbsp;</span></b><b><span style="font-family: helvetica;">1.5</span></b><b><span style="font-family: helvetica;">+ years</span></b></div><div style="font-size: 18.9px; text-align: left;"><b style="font-size: 18.9px; text-align: justify;"><span style="background-color: #444444; color: #eeeeee; font-family: trebuchet;"><br /></span></b></div><div style="font-size: 18.9px; text-align: left;"><b style="font-size: 18.9px; text-align: justify;"><span style="background-color: #444444; color: #eeeeee; font-family: trebuchet;"><br /></span></b></div><div style="font-size: 18.9px; text-align: left;"><b style="font-size: 18.9px; text-align: justify;"><span style="background-color: #444444; color: #eeeeee; font-family: trebuchet;"><br /></span></b></div></span></span></span></span>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 My Portfolio - All rights reserved</p>
+    </footer>
+
 </body>
+
+</html>
