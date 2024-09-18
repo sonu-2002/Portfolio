@@ -33,6 +33,11 @@
     /* Maintain the aspect ratio (width/height) */
     width: auto;
   }
+
+  #unity-footer {
+
+    display: none;
+  }
 </style>
 
 
@@ -46,7 +51,11 @@
       </div>
     </div>
     <div id="unity-warning"> </div>
-  
+    <div id="unity-footer">
+      <div id="unity-webgl-logo"></div>
+      <div id="unity-fullscreen-button"></div>
+      <div id="unity-build-title">HTML_5</div>
+    </div>
   </div>
   <script>
     var container = document.querySelector("#unity-container");
@@ -118,7 +127,7 @@
     } else {
       // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-     
+
     }
 
     loadingBar.style.display = "block";
