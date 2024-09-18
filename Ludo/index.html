@@ -7,6 +7,39 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
+  
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+   
+  }
+
+  #unity-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+  }
+
+  #unity-canvas {
+    /* Match canvas height to 100% of the screen */
+    height: 100%;
+    /* Maintain the aspect ratio (width/height) */
+    width: auto;
+  }
+
+  #unity-footer {
+
+    display: none;
+  }
+</style>
+
   <body>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=1024 height=1900></canvas>
@@ -93,8 +126,7 @@
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "1024px";
-        canvas.style.height = "1900px";
+   
       }
 
       loadingBar.style.display = "block";
