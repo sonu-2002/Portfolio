@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#unity-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+}
+
+#unity-canvas {
+  /* Match canvas height to 100% of the screen */
+  height: 100%;
+  /* Maintain the aspect ratio (width/height) */
+  aspect-ratio: 9/20;
+  /* or 20/9 if that's your desired ratio */
+  /* Prevent width from overflowing the screen */
+  max-width: 100%;
+}
+
+#unity-footer {
+
+  display: none;
+}
