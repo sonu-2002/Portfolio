@@ -27,12 +27,14 @@
     background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
   }
 
-  #unity-canvas {
+#unity-canvas {
     /* Match canvas height to 100% of the screen */
     height: 100%;
     /* Maintain the aspect ratio (width/height) */
-    width: auto;
-  }
+    aspect-ratio: 20/9; /* or 20/9 if that's your desired ratio */
+    /* Prevent width from overflowing the screen */
+    max-width: 100%;
+}
 
   #unity-footer {
 
