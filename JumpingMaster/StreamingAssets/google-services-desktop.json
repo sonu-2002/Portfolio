@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "424187084067",
+    "firebase_url": "https://jumping-master-f488c-default-rtdb.firebaseio.com",
+    "project_id": "jumping-master-f488c",
+    "storage_bucket": "jumping-master-f488c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424187084067:android:d7ae95521fc852bca6a096",
+        "android_client_info": {
+          "package_name": "com.Lionadz.JumpIingMaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzAj6Va_VyeR7LCPFjbkPmpFKAatvgwIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424187084067:android:93643058e22fb5a5a6a096",
+        "android_client_info": {
+          "package_name": "com.Lionadz.JumpingMaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzAj6Va_VyeR7LCPFjbkPmpFKAatvgwIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
