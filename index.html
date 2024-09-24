@@ -8,6 +8,57 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #projectImages img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            max-height: 80vh;
+            /* Ensures the image doesn't overflow vertically */
+            display: block;
+            object-fit: cover;
+            /* Ensures the image covers the area without stretching */
+            border-radius: 8px;
+            /* Optional: To match the modal's rounded corners */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
         /* Global Styles */
         body {
             font-family: 'Helvetica Neue', sans-serif;
@@ -48,6 +99,50 @@
         nav a:hover {
             color: #0056b3;
         }
+
+
+
+
+        #resumeButton {
+            cursor: pointer;
+        }
+
+
+        #Resume {
+            display: none;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        #Resume header {
+            text-align: center;
+        }
+
+        #Resume .divider {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        #Resume h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #Resume p {
+            line-height: 1.6;
+        }
+
+        #Resume ul {
+            line-height: 1.8;
+        }
+
+        #Resume h3 {
+            margin-bottom: 5px;
+        }
+
 
         /* About Me Section */
         #about {
@@ -122,7 +217,7 @@
 
         /* Projects Section */
         #projects {
-           
+
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -132,7 +227,7 @@
 
         #projects h2 {
             font-size: 2rem;
-           color: #007bff;
+            color: #4f4f4f;
             margin-bottom: 20px;
         }
 
@@ -153,24 +248,39 @@
             align-items: center;
         }
 
-        .project:hover {
+        .projectCPP {
+            cursor: pointer;
+            background-color: #dcefff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .project:hover,
+        .projectCPP:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .project i {
+        .project i,
+        .projectCPP i {
             font-size: 2rem;
             color: #007bff;
             margin-right: 15px;
         }
 
-        .project h3 {
+        .project h3,
+        .projectCPP h3 {
             font-size: 1.5rem;
             color: #007bff;
             margin-bottom: 10px;
         }
 
-        .project p {
+        .project p,
+        .projectCPP p {
             font-size: 1rem;
             color: #555;
         }
@@ -310,9 +420,10 @@
 <body>
 
     <nav>
-        <a href="#">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a onclick="showPorfolio()" href="#">About Me</a>
+        <a onclick="showPorfolio()" href="#projects">Projects</a>
+        <a onclick="showPorfolio()" href="#contact">Contact</a>
+        <a id="resumeButton" onclick="showResume()">Resume</a>
     </nav>
 
     <section id="about">
@@ -346,6 +457,10 @@
             </div>
             <div class="skill">
                 <i class="fab fa-unity"></i>
+                <span>Firebase</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
                 <span>Photoshop</span>
             </div>
             <div class="skill">
@@ -354,75 +469,110 @@
             </div>
         </div>
     </section>
-
+    <!-- Modal Popup for Project Screenshots -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="projectImages"></div>
+        </div>
+    </div>
     <section id="projects">
-        <h2>Projects</h2>
+        <h2>Projects using <i class="fa-solid fa-code"></i> pure c++ || <i class="fab fa-unity"></i> unity3d </h2>
         <div class="projects">
+
+
+            <div class="projectCPP" onclick="openModal(1)">
+                <i class="fa-solid fa-code"></i>
+                <div>
+                    <h3>Project 1: Tiktak</h3>
+                    <p>Developed using C++.</p>
+                </div>
+            </div>
+            <div class="projectCPP" onclick="openModal(2)">
+                <i class="fa-solid fa-code"></i>
+                <div>
+                    <h3>Project 2: Ludo</h3>
+                    <p>Developed using C++.</p>
+                </div>
+            </div>
+            <div class="projectCPP" onclick="openModal(3)">
+                <i class="fa-solid fa-code"></i>
+                <div>
+                    <h3>Project 3: End walls</h3>
+                    <p>Developed using C++.</p>
+                </div>
+            </div>
+            <div class="projectCPP" onclick="openModal(4)">
+                <i class="fa-solid fa-code"></i>
+                <div>
+                    <h3>Project 4: Bouncing Ball</h3>
+                    <p>Developed using C++.</p>
+                </div>
+            </div>
+
+
+
+
             <div class="project" onclick="OnClickProject(1)">
-                <i class="fas fa-car"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 1: Ludo</h3>
                     <p>Ludo with Online Multiplayer using PUN2.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(2)">
-                <i class="fas fa-gamepad"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 2: Helix Stack Jump</h3>
                     <p>A Helix Stack Jump game with unique mechanics.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(3)">
-                <i class="fas fa-robot"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 3: Block Puzzle</h3>
-                    <p>An AI-driven puzzle game with dynamic difficulty adjustment.</p>
+                    <p>Players place shaped blocks on a grid to clear rows or columns.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(4)">
-                <i class="fas fa-globe"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 4: Bike surf</h3>
-                    <p>An augmented reality app for exploring virtual environments.</p>
+                    <p>Players ride motorcycles through challenging tracks filled with traffic.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(5)">
-                <i class="fas fa-code"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 5: snake.io</h3>
-                    <p>A platform for interactive coding lessons and challenges.</p>
+                    <p>Growing longer by eating food while avoiding collisions with other snakes.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(6)">
-                <i class="fas fa-cogs"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 6: Hill Climb</h3>
-                    <p>A simulator for programming and controlling virtual robots.</p>
+                    <p>players navigate challenging terrain in various vehicles.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(7)">
-                <i class="fas fa-music"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 7: Race 3d</h3>
-                    <p>A rhythm game where players tap along with the beat.</p>
+                    <p>players control a walking character, racing against another player while avoiding obstacles.</p>
                 </div>
             </div>
             <div class="project" onclick="OnClickProject(8)">
-                <i class="fas fa-puzzle-piece"></i>
+                <i class="fab fa-unity"></i>
                 <div>
                     <h3>Project 8: Knife Hit</h3>
-                    <p>A sandbox game where players can create and share their own levels.</p>
+                    <p>Aiming to break the wooden pieces while avoiding hitting other knives.</p>
                 </div>
             </div>
-            <div class="project" onclick="OnClickProject(9)">
-                <i class="fas fa-puzzle-piece"></i>
-                <div>
-                    <h3>Project 9: Jumping master</h3>
-                    <p>A collection of brain-teasing puzzles with various difficulty levels.</p>
-                </div>
-            </div>
+
         </div>
     </section>
+
 
 
     <section id="contact">
@@ -437,6 +587,11 @@
             <a href="https://www.facebook.com/profile.php?id=61559611096383&mibextid=ZbWKwL" target="_blank"
                 title="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
+    </section>
+
+    <section id="Resume">
+        <embed src="https://sonu-2002.github.io/Portfolio/resume.pdf#toolbar=0" width="100%" height="600px"
+            type="application/pdf">
     </section>
 
     <footer>
@@ -471,13 +626,94 @@
             case 8:
                 window.open("/Portfolio/KnifeHit", "_blank");  // Opens the Knife Hit page in a new tab
                 break;
-            case 9:
-                window.open("/Portfolio/JumpingMaster", "_blank");  // Opens the Jumping Master page in a new tab
-                break;
             default:
                 console.log("Unknown project index: " + ProjectIndex);
         }
     }
+
+    function openModal(projectIndex) {
+        let images = '';
+        switch (projectIndex) {
+            case 1:
+                images = `
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/1.jpg" alt="Ludo Screenshot 1">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/2.jpg" alt="Ludo Screenshot 2">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/3.jpg" alt="Ludo Screenshot 3">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/4.jpg" alt="Ludo Screenshot 4">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/5.jpg" alt="Ludo Screenshot 5">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/6.jpg" alt="Ludo Screenshot 6">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/7.jpg" alt="Ludo Screenshot 7">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/8.jpg" alt="Ludo Screenshot 8">
+                `;
+                break;
+            case 2:
+                images = `
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/1.png" alt="Ludo Screenshot 1">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/2.png" alt="Ludo Screenshot 2">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/3.png" alt="Ludo Screenshot 3">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/4.png" alt="Ludo Screenshot 4">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/5.png" alt="Ludo Screenshot 5">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/6.png" alt="Ludo Screenshot 6">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/7.png" alt="Ludo Screenshot 7">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/8.png" alt="Ludo Screenshot 8">
+                `;
+                break;
+            case 3:
+                images = `
+                     <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/1.png" alt="Ludo Screenshot 1">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/2.png" alt="Ludo Screenshot 2">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/3.png" alt="Ludo Screenshot 3">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/4.png" alt="Ludo Screenshot 4">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/5.png" alt="Ludo Screenshot 5">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/6.png" alt="Ludo Screenshot 6">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/7.png" alt="Ludo Screenshot 7">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/8.png" alt="Ludo Screenshot 8">
+
+                `;
+                break;
+            case 4:
+                images = `
+                   <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/1.png" alt="Ludo Screenshot 1">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/2.png" alt="Ludo Screenshot 2">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/3.png" alt="Ludo Screenshot 3">
+                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/4.png" alt="Ludo Screenshot 4">
+                
+                `;
+                break;
+        }
+
+        document.getElementById('projectImages').innerHTML = images;
+        document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        if (event.target == document.getElementById('modal')) {
+            closeModal();
+        }
+    }
+
+    function showResume() {
+        document.getElementById('about').style.display = 'none';
+        document.getElementById('projects').style.display = 'none';
+        document.getElementById('contact').style.display = 'none';
+
+        document.getElementById('Resume').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showPorfolio() {
+        document.getElementById('about').style.display = 'block';
+        document.getElementById('projects').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
+
+        document.getElementById('Resume').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
 </script>
 
 
