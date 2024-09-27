@@ -328,28 +328,22 @@
             color: #0056b3;
         }
 
-        #ResumeButton2 {
-            background-color: #4d4d4d4d;
 
+
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4c53af;
+            /* Green */
             color: white;
-
-            margin-left: 60px;
-            padding: 7px 20px;
-
-            border: none;
-
+            text-align: center;
+            text-decoration: none;
             border-radius: 5px;
-
             font-size: 16px;
-            border-left: 5px solid #454545;
-            cursor: pointer;
-
-            transition: background-color 0.3s ease;
-
         }
 
 
-        #ResumeButton2:hover {
+        .download-button:hover {
             background-color: #4845a0;
 
         }
@@ -470,10 +464,9 @@
 <body>
 
     <nav>
-        <a onclick="showPorfolio()" href="#">About Me</a>
-        <a onclick="showPorfolio()" href="#projects">Projects</a>
-        <a onclick="showPorfolio()" href="#contact">Contact</a>
-        <a id="resumeButton" onclick="showResume()">Resume</a>
+        <a href="#">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <section id="about">
@@ -495,7 +488,11 @@
         <p>🎮 Hello! I’m Sonu Kumar Shah, a dedicated game programmer with a passion for creating immersive gaming
             experiences. My journey in game development began in the 8th grade with four C++ game projects, igniting my
             fascination with coding and game mechanics. 🚀</p>
-        <p class="MainDomain">/ Game Programmer <button id="ResumeButton2" onclick="showResume()">resume</button> </p>
+        <p class="MainDomain">/ Game Programmer &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="resume.pdf" class="download-button" target="_blank"
+                download>Download Resume
+                <i class="fa-solid fa-download"></i></a>
+        </p>
         <div class="skills">
             <div class="skill">
                 <i class="fab fa-unity"></i>
@@ -655,9 +652,7 @@
 
     </section>
 
-    <section id="Resume">
-        <embed src="/Portfolio/resume.pdf#toolbar=0" width="100%" height="600px" type="application/pdf">
-    </section>
+
 
     <footer>
         <p>&copy; 2024 My Portfolio - All rights reserved</p>
@@ -759,24 +754,6 @@
         if (event.target == document.getElementById('modal')) {
             closeModal();
         }
-    }
-
-    function showResume() {
-        document.getElementById('about').style.display = 'none';
-        document.getElementById('projects').style.display = 'none';
-        document.getElementById('contact').style.display = 'none';
-
-        document.getElementById('Resume').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showPorfolio() {
-        document.getElementById('about').style.display = 'block';
-        document.getElementById('projects').style.display = 'block';
-        document.getElementById('contact').style.display = 'block';
-
-        document.getElementById('Resume').style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
 </script>
