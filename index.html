@@ -59,10 +59,16 @@
             cursor: pointer;
         }
 
+        @font-face {
+            font-family: 'DINOT';
+            src: url('https://sonu-2002.github.io/Portfolio/dinot.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
         /* Global Styles */
         body {
-            font-family: 'Helvetica Neue', sans-serif;
+            font-family: 'DINOT', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -147,13 +153,15 @@
 
         /* About Me Section */
         #about {
+
+            background: #9d9d9d;
             display: flex;
             align-items: center;
             flex-direction: column;
             text-align: center;
             position: relative;
             padding: 20px;
-            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            /* background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%); */
             color: #fff;
         }
 
@@ -162,8 +170,9 @@
             width: 150px;
             height: 150px;
             margin-bottom: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
             animation: float 4s ease-in-out infinite;
+            border: 3px solid white;
         }
 
         #about h2 {
@@ -219,17 +228,17 @@
 
         /* Projects Section */
         #projects {
-
-            background-color: #fff;
+            margin-top: 4px;
+            background-color: #3c3c3c;
             padding: 20px;
-            border-radius: 10px;
+            /* border-radius: 10px; */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             animation: fadeInUp 1.2s forwards;
         }
 
         #projects h2 {
             font-size: 2rem;
-            color: #4f4f4f;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -244,8 +253,8 @@
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #007bff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 3px solid #007bff;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             align-items: center;
@@ -256,8 +265,8 @@
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #ff0000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff0000;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             align-items: center;
@@ -266,7 +275,7 @@
         .project:hover,
         .projectCPP:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); */
         }
 
         .project i {
@@ -305,10 +314,11 @@
 
         /* Contact Section */
         #contact {
-            background-color: #fff;
+            margin-top: 4px;
+            background-color: #3c3c3c;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            /* border-radius: 10px; */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); */
             animation: fadeInUp 1.4s forwards;
             text-align: center;
         }
@@ -316,10 +326,16 @@
         #contact p {
             font-size: 1.1rem;
             margin: 10px 0;
+            color: #ffffff;
+        }
+
+        #contact h2 {
+           
+            color: #ffffff;
         }
 
         #contact a {
-            color: #007bff;
+            color: #ffffff;
             text-decoration: none;
             font-weight: bold;
         }
@@ -333,14 +349,18 @@
         .download-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #4c53af;
-            /* Green */
-            color: white;
+            color: #ffffff;
+            /* Button text color */
             text-align: center;
             text-decoration: none;
+            border: 2px solid #94fe00;
+            /* Show only borders */
             border-radius: 5px;
             font-size: 16px;
+            background-color: transparent;
+            /* No background color */
         }
+
 
 
         .download-button:hover {
@@ -373,11 +393,11 @@
 
         /* Footer */
         footer {
-            background-color: #333;
+            background-color: #1a1a1a;
             color: #fff;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 30px;
+            padding: 10px 0;
+            margin-top: 2px;
         }
 
         footer p {
@@ -508,6 +528,10 @@
             <div class="skill">
                 <i class="fab fa-unity"></i>
                 <span>PUN 2</span>
+            </div>
+            <div class="skill">
+                <i class="fab fa-unity"></i>
+                <span>Ad Init..</span>
             </div>
             <div class="skill">
                 <i class="fab fa-unity"></i>
