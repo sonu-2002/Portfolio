@@ -1,785 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sonu/Portfolio</title>
+    <title>Sonu Shah | Game Programmer Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome for icons -->
-    <link rel="icon" href="/Portfolio/icon_.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        #projectImages img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-            max-height: 80vh;
-            /* Ensures the image doesn't overflow vertically */
-            display: block;
-            object-fit: cover;
-            /* Ensures the image covers the area without stretching */
-            border-radius: 8px;
-            /* Optional: To match the modal's rounded corners */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        @font-face {
-            font-family: 'DINOT';
-            src: url('https://sonu-2002.github.io/Portfolio/dinot.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* Global Styles */
+        /* Custom styles to complement Tailwind */
         body {
-            font-family: 'DINOT', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation Bar */
-        nav {
-            background-color: #fff;
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        nav a {
-            color: #007bff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #0056b3;
-        }
-
-
-
-
-        #resumeButton {
-            cursor: pointer;
-        }
-
-
-        #Resume {
-            display: none;
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        #Resume header {
-            text-align: center;
-        }
-
-        #Resume .divider {
-            border: none;
-            border-top: 1px solid #ddd;
-            margin: 20px 0;
-        }
-
-        #Resume h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        #Resume p {
-            line-height: 1.6;
-        }
-
-        #Resume ul {
-            line-height: 1.8;
-        }
-
-        #Resume h3 {
-            margin-bottom: 5px;
-        }
-
-
-        /* About Me Section */
-        #about {
-
-            background: #9d9d9d;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            position: relative;
-            padding: 20px;
-            /* background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%); */
-            color: #fff;
-        }
-
-        #about img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-bottom: 10px;
-            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-            animation: float 4s ease-in-out infinite;
-            border: 3px solid white;
-        }
-
-        #about h2 {
-            font-size: 2rem;
-            margin: 0;
-            color: #fff;
-        }
-
-        #about h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin: 10px 0;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        #about p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-
-        #about .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        #about .skill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            background-color: #fff;
-            color: #007bff;
-            padding: 5px 15px;
-            border-radius: 25px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #about .skill i {
-            font-size: 2rem;
-        }
-
-
-        #about .MainDomain {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            color: #454545;
-            font-weight: bold;
-        }
-
-        /* Projects Section */
-        #projects {
-            margin-top: 4px;
-            background-color: #3c3c3c;
-            padding: 20px;
-            /* border-radius: 10px; */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            animation: fadeInUp 1.2s forwards;
-        }
-
-        #projects h2 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .project {
-            cursor: pointer;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            border: 3px solid #007bff;
-            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .projectCPP {
-            cursor: pointer;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            border: 3px solid #ff0000;
-            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .project:hover,
-        .projectCPP:hover {
-            transform: scale(1.05);
-            /* box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); */
-        }
-
-        .project i {
-            font-size: 2rem;
-            color: #007bff;
-            margin-right: 15px;
-        }
-
-        .projectCPP i {
-            font-size: 2rem;
-            color: #007bff;
-            margin-right: 15px;
-        }
-
-        .project h3 {
-            font-size: 1.5rem;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .projectCPP h3 {
-            font-size: 1.5rem;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .project p {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .projectCPP p {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        /* Contact Section */
-        #contact {
-            margin-top: 4px;
-            background-color: #3c3c3c;
-            padding: 20px;
-            /* border-radius: 10px; */
-            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); */
-            animation: fadeInUp 1.4s forwards;
-            text-align: center;
-        }
-
-        #contact p {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            color: #ffffff;
-        }
-
-        #contact h2 {
-           
-            color: #ffffff;
-        }
-
-        #contact a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        #contact a:hover {
-            color: #0056b3;
-        }
-
-
-
-        .download-button {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #ffffff;
-            /* Button text color */
-            text-align: center;
-            text-decoration: none;
-            border: 2px solid #94fe00;
-            /* Show only borders */
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: transparent;
-            /* No background color */
-        }
-
-
-
-        .download-button:hover {
-            background-color: #4845a0;
-
-        }
-
-        .social-icons {
-            margin-top: -10px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            color: #ffffff;
-            font-size: 2rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: #0056b3;
-        }
-
-        #PhoneNumber {
-
-            font-weight: bold;
-            color: #606060;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 2px;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
-        }
-
+        /* Custom animation for floating effect */
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-10px);
             }
         }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
+        .floating-animation {
+            animation: float 4s ease-in-out infinite;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .projects {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Custom scrollbar for modal */
+        .modal-content-scrollable::-webkit-scrollbar {
+            width: 8px;
         }
-
-        @media (max-width: 480px) {
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
-            #about img {
-                width: 120px;
-                height: 120px;
-            }
-
-            #about h1 {
-                font-size: 2rem;
-            }
-
-            #about h2 {
-                font-size: 1.5rem;
-            }
-
-            #about p {
-                font-size: 1rem;
-            }
+        .modal-content-scrollable::-webkit-scrollbar-track {
+            background: #1e293b; /* bg-slate-800 */
+        }
+        .modal-content-scrollable::-webkit-scrollbar-thumb {
+            background-color: #334155; /* bg-slate-700 */
+            border-radius: 10px;
+            border: 2px solid #1e293b; /* bg-slate-800 */
         }
     </style>
 </head>
 
-<body>
+<body class="text-slate-300">
 
-    <nav>
-        <a href="#">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <!-- Header & Navigation -->
+    <nav class="bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-md shadow-slate-900/50">
+        <div class="container mx-auto px-6 py-4 flex justify-center items-center">
+            <div class="flex items-center space-x-8">
+                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors duration-300">About</a>
+                <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-sky-400 transition-colors duration-300">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <section id="about">
-        <img src="https://raw.githubusercontent.com/sonu-2002/Portfolio/refs/heads/main/ProfilePic.jpg"
-            alt="My Profile Picture">
-        <h2>SONU SHAH</h2>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
 
-        <div class="social-icons">
-            <a href="https://github.com/sonu-2002" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/sonu-kumar-738216217/" target="_blank" title="LinkedIn"><i
-                    class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/sonu.2412/" target="_blank" title="Instagram"><i
-                    class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61559611096383&mibextid=ZbWKwL" target="_blank"
-                title="Facebook"><i class="fab fa-facebook"></i></a>
+        <!-- About Me Section -->
+        <section id="about" class="min-h-[80vh] flex items-center py-16">
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="flex flex-col items-center md:items-start text-center md:text-left col-span-1 md:col-span-2">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white">Sonu Shah</h1>
+                    <h2 class="mt-2 text-xl md:text-2xl font-semibold text-sky-400">Game Programmer</h2>
+                    <p class="mt-6 max-w-2xl text-slate-400">
+                        Hello! I’m Sonu, a dedicated game programmer with a passion for creating immersive gaming experiences. My journey in game development began in the 8th grade with C++ game projects, igniting my fascination with coding and game mechanics.
+                    </p>
+                    <div class="mt-8 flex items-center justify-center md:justify-start gap-4 flex-wrap">
+                        <a href="resume.pdf" target="_blank" class="inline-flex items-center gap-2 bg-sky-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-sky-600 transition-colors duration-300 shadow-lg shadow-sky-500/20">
+                            Download Resume
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/sonu-2002" target="_blank" title="GitHub" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-github text-2xl"></i></a>
+                            <a href="https://linkedin.com/in/sonu-kumar-738216217/" target="_blank" title="LinkedIn" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-linkedin text-2xl"></i></a>
+                            <a href="https://www.instagram.com/sonu.2412/" target="_blank" title="Instagram" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-instagram text-2xl"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61559611096383" target="_blank" title="Facebook" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-facebook text-2xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center">
+                    <img src="https://raw.githubusercontent.com/sonu-2002/Portfolio/refs/heads/main/ProfilePic.jpg" alt="Sonu Shah Profile Picture" class="w-64 h-64 rounded-full object-cover border-4 border-slate-700 shadow-2xl floating-animation">
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">My Tech Stack</h2>
+                <p class="mt-2 text-slate-400">Technologies I work with to bring games to life.</p>
+            </div>
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-4">
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-code"></i> C#
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-code"></i> C++
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fab fa-unity"></i> Unity3D
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-network-wired"></i> Photon PUN 2
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-ad"></i> Ad Integration
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-cube"></i> Blender
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-fire"></i> Firebase
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fas fa-image"></i> Photoshop
+                </span>
+                <span class="bg-slate-800 text-sky-300 text-sm font-medium px-4 py-2 rounded-full flex items-center gap-2 border border-slate-700">
+                    <i class="fab fa-github"></i> Git & GitHub
+                </span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">My Projects</h2>
+                <p class="mt-2 text-slate-400">A collection of games I've built using C++ and Unity.</p>
+            </div>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- C++ Projects -->
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-2 cursor-pointer" onclick="openModal(1)">
+                    <div class="flex items-start gap-4">
+                        <i class="fa-solid fa-code text-red-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Tiktak</h3>
+                            <p class="text-sm text-slate-400 mt-1">A classic Tic-Tac-Toe game built with C++ during 8th grade.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-2 cursor-pointer" onclick="openModal(2)">
+                    <div class="flex items-start gap-4">
+                        <i class="fa-solid fa-code text-red-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Ludo</h3>
+                            <p class="text-sm text-slate-400 mt-1">A console-based Ludo game developed in C++.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-2 cursor-pointer" onclick="openModal(3)">
+                    <div class="flex items-start gap-4">
+                        <i class="fa-solid fa-code text-red-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white">End Walls</h3>
+                            <p class="text-sm text-slate-400 mt-1">An early C++ project showcasing fundamental game logic.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-2 cursor-pointer" onclick="openModal(4)">
+                    <div class="flex items-start gap-4">
+                        <i class="fa-solid fa-code text-red-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Bouncing Ball</h3>
+                            <p class="text-sm text-slate-400 mt-1">A simple physics simulation game built entirely in C++.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unity Projects -->
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 hover:-translate-y-2 cursor-pointer" onclick="OnClickProject(1)">
+                    <div class="flex items-start gap-4">
+                        <i class="fab fa-unity text-sky-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Ludo Online</h3>
+                            <p class="text-sm text-slate-400 mt-1">Full-featured Ludo with online multiplayer using Photon PUN 2.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 hover:-translate-y-2 cursor-pointer" onclick="OnClickProject(2)">
+                    <div class="flex items-start gap-4">
+                        <i class="fab fa-unity text-sky-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Helix Jump Clone</h3>
+                            <p class="text-sm text-slate-400 mt-1">A hyper-casual Helix Stack Jump game with unique gameplay elements.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 hover:-translate-y-2 cursor-pointer" onclick="OnClickProject(3)">
+                    <div class="flex items-start gap-4">
+                        <i class="fab fa-unity text-sky-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Block Puzzle</h3>
+                            <p class="text-sm text-slate-400 mt-1">Players place shaped blocks on a grid to clear rows or columns.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 hover:-translate-y-2 cursor-pointer" onclick="OnClickProject(4)">
+                    <div class="flex items-start gap-4">
+                        <i class="fab fa-unity text-sky-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Bike Surf</h3>
+                            <p class="text-sm text-slate-400 mt-1">Players ride motorcycles through challenging tracks filled with traffic.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 transition-all duration-300 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 hover:-translate-y-2 cursor-pointer" onclick="OnClickProject(5)">
+                    <div class="flex items-start gap-4">
+                        <i class="fab fa-unity text-sky-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Snake.io Clone</h3>
+                            <p class="text-sm text-slate-400 mt-1">Grow longer by eating food while avoiding collisions with other snakes.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add other Unity projects similarly -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 text-center">
+            <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
+            <p class="mt-4 max-w-xl mx-auto text-slate-400">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out!
+            </p>
+            <div class="mt-8">
+                <a href="mailto:sonu.in2412@gmail.com" class="text-xl font-semibold text-sky-400 hover:text-sky-500 transition-colors duration-300">
+                    sonu.in2412@gmail.com
+                </a>
+                <p class="mt-2 text-slate-400">+91 7564949436</p>
+            </div>
+            <div class="mt-6 flex justify-center items-center gap-6">
+                <a href="https://github.com/sonu-2002" target="_blank" title="GitHub" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-github text-3xl"></i></a>
+                <a href="https://linkedin.com/in/sonu-kumar-738216217/" target="_blank" title="LinkedIn" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-linkedin text-3xl"></i></a>
+                <a href="https://www.instagram.com/sonu.2412/" target="_blank" title="Instagram" class="text-slate-400 hover:text-white transition-colors duration-300"><i class="fab fa-instagram text-3xl"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800">
+        <div class="container mx-auto px-6 py-4 text-center text-sm text-slate-500">
+            <p>&copy; 2024 Sonu Shah. All rights reserved.</p>
         </div>
-
-
-        <p>🎮 Hello! I’m Sonu Kumar Shah, a dedicated game programmer with a passion for creating immersive gaming
-            experiences. My journey in game development began in the 8th grade with four C++ game projects, igniting my
-            fascination with coding and game mechanics. 🚀</p>
-        <p class="MainDomain">/ Game Programmer &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="resume.pdf" class="download-button" target="_blank">Download Resume
-                <i class="fa-solid fa-download"></i></a>
-        </p>
-        <div class="skills">
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>C#</span>
+    </footer>
+    
+    <!-- Modal for Project Screenshots -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-800 border border-slate-700 rounded-lg w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl">
+            <div class="p-4 border-b border-slate-700 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-white" id="modal-title">Project Screenshots</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white">&times;</button>
             </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>C++</span>
+            <div id="project-images" class="p-4 space-y-4 overflow-y-auto modal-content-scrollable">
+                <!-- Images will be injected here by JavaScript -->
             </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Unity3D</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>PUN 2</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Ad Init..</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Blender</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Firebase</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Photoshop</span>
-            </div>
-            <div class="skill">
-                <i class="fab fa-unity"></i>
-                <span>Github</span>
-            </div>
-        </div>
-    </section>
-    <!-- Modal Popup for Project Screenshots -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="projectImages"></div>
         </div>
     </div>
-    <section id="projects">
-        <h2>Projects using ( Pure c++ and <i class="fab fa-unity"></i> unity3d )</h2>
-        <div class="projects">
 
+    <script>
+        // --- Project Link Handler ---
+        function OnClickProject(projectIndex) {
+            const projectUrls = [
+                "/Portfolio/Ludo",
+                "/Portfolio/HelixStackJump",
+                "/Portfolio/BlockPuzzle",
+                "/Portfolio/BikeSurf",
+                "/Portfolio/SnakeIO",
+                "/Portfolio/HillClimb",
+                "/Portfolio/Race3D",
+                "/Portfolio/KnifeHit"
+            ];
+            if (projectIndex > 0 && projectIndex <= projectUrls.length) {
+                window.open(projectUrls[projectIndex - 1], "_blank");
+            } else {
+                console.warn("Unknown project index: " + projectIndex);
+            }
+        }
 
-            <div class="projectCPP" onclick="openModal(1)">
-                <i class="fa-solid fa-code"></i>
-                <div>
-                    <h3>Project 1: Tiktak</h3>
-                    <p>Developed using C++ during 8th grade, showcasing early programming skills.</p>
-                </div>
-            </div>
-            <div class="projectCPP" onclick="openModal(2)">
-                <i class="fa-solid fa-code"></i>
-                <div>
-                    <h3>Project 2: Ludo</h3>
-                    <p>Developed using C++ during 8th grade, showcasing early programming skills.</p>
-                </div>
-            </div>
-            <div class="projectCPP" onclick="openModal(3)">
-                <i class="fa-solid fa-code"></i>
-                <div>
-                    <h3>Project 3: End walls</h3>
-                    <p>Developed using C++ during 8th grade, showcasing early programming skills.</p>
-                </div>
-            </div>
-            <div class="projectCPP" onclick="openModal(4)">
-                <i class="fa-solid fa-code"></i>
-                <div>
-                    <h3>Project 4: Bouncing Ball</h3>
-                    <p>Developed using C++ during 8th grade, showcasing early programming skills.</p>
-                </div>
-            </div>
+        // --- Modal Logic ---
+        const modal = document.getElementById('project-modal');
+        const modalImagesContainer = document.getElementById('project-images');
+        const modalTitle = document.getElementById('modal-title');
+        
+        const projectImageData = {
+             1: {
+                title: 'Tiktak (C++)',
+                images: [
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/1.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/2.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/3.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/4.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/5.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/6.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/7.jpg",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/8.jpg"
+                ]
+            },
+            2: {
+                title: 'Ludo (C++)',
+                images: [
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/1.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/2.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/3.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/4.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/5.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/6.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/7.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Ludo/8.png"
+                ]
+            },
+            3: {
+                title: 'End Walls (C++)',
+                images: [
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/1.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/2.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/3.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/4.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/5.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/6.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/7.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/8.png"
+                ]
+            },
+            4: {
+                title: 'Bouncing Ball (C++)',
+                images: [
+                    "https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/1.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/2.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/3.png",
+                    "https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/4.png"
+                ]
+            }
+        };
 
+        function openModal(projectIndex) {
+            const data = projectImageData[projectIndex];
+            if (!data) return;
 
+            modalTitle.textContent = data.title;
+            modalImagesContainer.innerHTML = data.images.map(src => 
+                `<img src="${src}" alt="${data.title} screenshot" class="w-full h-auto rounded-md object-contain">`
+            ).join('');
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
 
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore background scrolling
+        }
 
-            <div class="project" onclick="OnClickProject(1)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 5: Ludo</h3>
-                    <p>Ludo with Online Multiplayer using Photon Unity Networking 2.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(2)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 6: Helix Jump</h3>
-                    <p>A Helix Stack Jump game that introduces unique gameplay elements.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(3)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 7: Block Puzzle</h3>
-                    <p>Players place shaped blocks on a grid to clear rows or columns.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(4)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 8: Bike surf</h3>
-                    <p>Players ride motorcycles through challenging tracks filled with traffic.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(5)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 9: snake.io</h3>
-                    <p>Growing longer by eating food while avoiding collisions with other snakes.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(6)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 10: Hill Climb</h3>
-                    <p>players navigate challenging terrain in various vehicles.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(7)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 11: Race 3d</h3>
-                    <p>Players race against each other, avoiding obstacles.</p>
-                </div>
-            </div>
-            <div class="project" onclick="OnClickProject(8)">
-                <i class="fab fa-unity"></i>
-                <div>
-                    <h3>Project 12: Knife Hit</h3>
-                    <p>Aiming to break the wooden pieces while avoiding hitting other knives.</p>
-                </div>
-            </div>
+        // Close modal if user clicks outside of the content area or presses Escape key
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        document.addEventListener('keydown', (event) => {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
 
-        </div>
-    </section>
-
-
-
-    <section id="contact">
-        <h2>Contact</h2>
-
-        <p>Email: <a href="mailto:sonu.in2412@gmail.com">sonu.in2412@gmail.com</a></p>
-        <div class="social-icons">
-            <a href="https://github.com/sonu-2002" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/sonu-shah-738216217/" target="_blank" title="LinkedIn"><i
-                    class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/sonu.2412/" target="_blank" title="Instagram"><i
-                    class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61559611096383&mibextid=ZbWKwL" target="_blank"
-                title="Facebook"><i class="fab fa-facebook"></i></a>
-        </div>
-        <p id="PhoneNumber"> Phone: +91 7564949436</a></p>
-
-
-    </section>
-
-
-
-    <footer>
-        <p>&copy; 2024 My Portfolio - All rights reserved</p>
-    </footer>
-
+    </script>
 </body>
-<script>
-    function OnClickProject(ProjectIndex) {
-        switch (ProjectIndex) {
-            case 1:
-                window.open("/Portfolio/Ludo", "_blank");  // Opens the Ludo project page in a new tab
-                break;
-            case 2:
-                window.open("/Portfolio/HelixStackJump", "_blank");  // Opens the Helix Stack Jump page in a new tab
-                break;
-            case 3:
-                window.open("/Portfolio/BlockPuzzle", "_blank");  // Opens the Block Puzzle page in a new tab
-                break;
-            case 4:
-                window.open("/Portfolio/BikeSurf", "_blank");  // Opens the Bike Surf page in a new tab
-                break;
-            case 5:
-                window.open("/Portfolio/SnakeIO", "_blank");  // Opens the snake.io page in a new tab
-                break;
-            case 6:
-                window.open("/Portfolio/HillClimb", "_blank");  // Opens the Hill Climb page in a new tab
-                break;
-            case 7:
-                window.open("/Portfolio/Race3D", "_blank");  // Opens the Race 3D page in a new tab
-                break;
-            case 8:
-                window.open("/Portfolio/KnifeHit", "_blank");  // Opens the Knife Hit page in a new tab
-                break;
-            default:
-                console.log("Unknown project index: " + ProjectIndex);
-        }
-    }
-
-    function openModal(projectIndex) {
-        let images = '';
-        switch (projectIndex) {
-            case 1:
-                images = `
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/1.jpg" alt="Ludo Screenshot 1">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/2.jpg" alt="Ludo Screenshot 2">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/3.jpg" alt="Ludo Screenshot 3">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/4.jpg" alt="Ludo Screenshot 4">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/5.jpg" alt="Ludo Screenshot 5">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/6.jpg" alt="Ludo Screenshot 6">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/7.jpg" alt="Ludo Screenshot 7">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Tiktak/8.jpg" alt="Ludo Screenshot 8">
-                `;
-                break;
-            case 2:
-                images = `
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/1.png" alt="Ludo Screenshot 1">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/2.png" alt="Ludo Screenshot 2">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/3.png" alt="Ludo Screenshot 3">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/4.png" alt="Ludo Screenshot 4">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/5.png" alt="Ludo Screenshot 5">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/6.png" alt="Ludo Screenshot 6">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/7.png" alt="Ludo Screenshot 7">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Ludo/8.png" alt="Ludo Screenshot 8">
-                `;
-                break;
-            case 3:
-                images = `
-                     <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/1.png" alt="Ludo Screenshot 1">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/2.png" alt="Ludo Screenshot 2">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/3.png" alt="Ludo Screenshot 3">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/4.png" alt="Ludo Screenshot 4">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/5.png" alt="Ludo Screenshot 5">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/6.png" alt="Ludo Screenshot 6">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/7.png" alt="Ludo Screenshot 7">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/Endwalls/8.png" alt="Ludo Screenshot 8">
-
-                `;
-                break;
-            case 4:
-                images = `
-                   <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/1.png" alt="Ludo Screenshot 1">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/2.png" alt="Ludo Screenshot 2">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/3.png" alt="Ludo Screenshot 3">
-                    <img src="https://sonu-2002.github.io/Portfolio/C++Project/BouncingBall/4.png" alt="Ludo Screenshot 4">
-                
-                `;
-                break;
-        }
-
-        document.getElementById('projectImages').innerHTML = images;
-        document.getElementById('modal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    window.onclick = function (event) {
-        if (event.target == document.getElementById('modal')) {
-            closeModal();
-        }
-    }
-
-</script>
-
-
 </html>
